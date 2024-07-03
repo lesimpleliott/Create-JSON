@@ -1,5 +1,7 @@
 # Script de Traitement d'Images et de Génération de JSON et ZIP
 
+Version 1.2.0 // Ajout de 'npm run settings'
+
 Ce script Node.js est conçu pour traiter les albums d'images, les convertir dans le format souhaité, générer un fichier JSON structuré avec les informations des images traitées, et créer des fichiers ZIP contenant les versions haute résolution des images.
 
 ## Fonctionnalités
@@ -19,7 +21,13 @@ Ce script Node.js est conçu pour traiter les albums d'images, les convertir dan
    npm install
    ```
 
-3. **Configurez les paramètres personnalisables dans settings.js**
+3. **Configurez les paramètres selon vos besoins**
+
+   ```bash
+   npm run settings
+   ```
+
+   ou modifiez manuellement le fichier `settings.js` à la racine du dossier
 
 4. **Importez les albums photos dans le dossier 'import'**
 

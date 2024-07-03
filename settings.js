@@ -1,19 +1,9 @@
-// ********************* SETTINGS FILE *********************
-// *********** Fichier de configuration du script ***********
-// **********************************************************
+// ***** SETTINGS FILE *****
 
-// Extension des fichiers de sortie
-const outputFileExtension = "avif";
-
-// Taille de l'image de sortie
-// (0.1 = 10%, 0.5 = 50%, 1 = 100%)
-const outputSize = 0.4;
-
-// Auteur par défaut
-const defaultAuthor = "Unsplash";
-
-// Nom du fichier JSON de sortie
-const outputJSONFile = "exportData";
+const outputFileExtension = "avif"; // Extension des fichiers de sortie
+const outputSize = 0.3; // Taille de l'image de sortie (0.1 à 1)
+const defaultAuthor = "test"; // Auteur par défaut
+const outputJSONFile = "expoooortDataaa"; // Nom du fichier JSON de sortie
 
 module.exports = {
   outputFileExtension,
