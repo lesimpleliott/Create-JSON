@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 
-const defaultAuthor = "Fabrice Joubert Photographe"; // Auteur par défaut
+const { defaultAuthor } = require("../settings");
 
 const getDatasFromFolder = async (imagesDirectory, outputDir) => {
   const folders = fs
@@ -21,7 +21,6 @@ const getDatasFromFolder = async (imagesDirectory, outputDir) => {
     const images = files.map(async (file) => {
       const filePath = path.join(folderPath, file);
       const fileName = path.parse(file).name;
-      // const id = fileName.substring(fileName.lastIndexOf("_") + 1);
 
       const idWithZeros = fileName.substring(fileName.lastIndexOf("_") + 1); // Extrait l'ID avec les zéros
       const id = parseInt(idWithZeros, 10); // Convertit l'ID en nombre entier pour supprimer les zéros inutiles
@@ -55,7 +54,7 @@ const getDatasFromFolder = async (imagesDirectory, outputDir) => {
     return Promise.all(images).then((resolvedImages) => {
       const albumName = folder.split("_")[1];
       const albumId = albumName.toLowerCase();
-      const zipFile = `${albumName}.zip`; // Nom du fichier ZIP sans espaces
+      const zipFile = `${albumName}.zip`;
       const coverImage =
         resolvedImages.length > 0
           ? resolvedImages[0].filename

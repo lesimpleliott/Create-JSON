@@ -7,11 +7,15 @@ const { countTotalImages } = require("./utils/countTotalImages");
 const { processImages } = require("./utils/processImages");
 const { getDatasFromFolder, createJsonFile } = require("./utils/createJSON");
 const { createZipForAlbum } = require("./utils/createZip");
+const {
+  outputFileExtension,
+  outputSize,
+  outputJSONFile,
+} = require("./settings");
 
 const inputDir = "./import"; // Dossier principal contenant les albums
 const outputDir = "./export/photos"; // Dossier de sortie
-const outputFilePath = "./export/exportData.json"; // Nom du fichier JSON de sortie
-const outputFileExtension = "webp"; // Extension des fichiers de sortie
+const outputFilePath = `./export/${outputJSONFile}.json`; // Nom du fichier JSON de sortie
 
 const main = async () => {
   try {
@@ -31,7 +35,7 @@ const main = async () => {
         albumDir,
         hdDir,
         displayDir,
-        0.5,
+        outputSize,
         outputFileExtension,
         bar
       );
