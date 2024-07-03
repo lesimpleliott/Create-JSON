@@ -4,7 +4,8 @@ const ProgressBar = require("progress");
 const { readAlbums } = require("./utils/readAlbums");
 const { createDirectories } = require("./utils/createDirectories");
 const { countTotalImages } = require("./utils/countTotalImages");
-const { processImages } = require("./utils/processImages");
+const { copyImage } = require("./utils/copyImages");
+const { optimizeImage } = require("./utils/optimizeImages");
 const { getDatasFromFolder, createJsonFile } = require("./utils/createJSON");
 const { createZipForAlbum } = require("./utils/createZip");
 const {
@@ -31,14 +32,21 @@ const main = async () => {
       const albumDir = path.join(inputDir, album);
       const { hdDir, displayDir } = createDirectories(outputDir, album);
 
-      await processImages(
-        albumDir,
-        hdDir,
-        displayDir,
-        outputSize,
-        outputFileExtension,
-        bar
-      );
+      const jpgFiles = fs
+        .readdirSync(albumDir)
+        .filter((file) => file.toLowerCase().endsWith(".jpg"));
+
+      for (const file of jpgFiles) {
+        const inputFile = path.join(albumDir, file);
+        await copyImage(inputFile, hdDir);
+        await optimizeImage(
+          inputFile,
+          displayDir,
+          outputSize,
+          outputFileExtension
+        );
+        bar.tick();
+      }
 
       // Créer un fichier ZIP contenant les images HD de l'album
       await createZipForAlbum(album, hdDir, outputDir);
