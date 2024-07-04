@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 
-const { defaultAuthor } = require("../settings");
+const { defaultAuthor, outputFileExtension } = require("../settings");
 
 const getDatasFromFolder = async (imagesDirectory, outputDir) => {
   const folders = fs
@@ -33,7 +33,7 @@ const getDatasFromFolder = async (imagesDirectory, outputDir) => {
         "photos",
         folder,
         "display",
-        `${fileName}.webp`
+        `${fileName}.${outputFileExtension}`
       );
 
       return {
